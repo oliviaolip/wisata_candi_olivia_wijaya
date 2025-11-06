@@ -1,4 +1,4 @@
-import '../models/candi.dart';
+import '/models/candi.dart';
 
 var candiList = [
   Candi(
