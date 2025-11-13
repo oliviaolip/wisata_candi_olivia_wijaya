@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import '/screens/profile_screen.dart';
-import '/screens/signin_screen.dart';
+import 'package:wisata_candi_mrizki_algipari/screens/search_screen.dart';
+
+import '/data/candi_data.dart';
 import '/screens/detail_screen.dart';
+import '/screens/signin_screen.dart';
+import '/screens/search_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,13 +15,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Wisata Candi',
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
-      // home: SignInScreen(),
-      home: ProfileScreen(),
-      // home : DetailScreen(candi: candi, candilist[0],)
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+      ),
+      home: SearchScreen(),
+      // home: ProfileScreen(),
+      // home: DetailScreen(candi: candi),\
+      // home: ListScreen(),
     );
   }
 }
