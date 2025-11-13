@@ -12,7 +12,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // TODO: 1 Buat appbar dengan judul Wisata Candi
+      appBar: AppBar(title: Text('Wisata Candi'),),
       // TODO: 2 Buat body dengan GridView.builder
+      body: GridView.builder(
+        gridDelegate: gridDelegate,
+        itemBuilder: itemBuilder, //GridView.builder
+      ),
       // TODO: 3 Buat ItemCard sebagai return value dari GridView.builder
     );
   }
