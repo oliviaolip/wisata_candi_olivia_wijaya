@@ -20,8 +20,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void signIn() {
     // setState(() {
     //   isSignedIn = true;
-    //   userName = 'Faiz';
-    //   fullName = 'Faiz Ganteng';
+    //   userName = 'Rizqi';
+    //   fullName = 'Rizqi Fajri Sya'Ban';
     //   favoriteCandiCount = 3;
     // });
     Navigator.pushNamed(context, '/signin');
@@ -67,7 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: CircleAvatar(
                             radius: 50,
                             backgroundImage: AssetImage(
-                              'assets/placeholder_image.png',
+                              'images/placeholder_image.png',
                             ),
                           ),
                         ),
@@ -83,7 +83,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                 ),
-                //   TODO 3 : Buat bagian ProfileInfor yang berisi info profile
+                //   TODO 3 : Buat bagian ProfileInfo yang berisi info profile
                 SizedBox(height: 20),
                 Divider(color: Colors.deepPurple[100]),
                 SizedBox(height: 4),

@@ -1,5 +1,5 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -43,10 +43,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     // buat navigasi ke SignInScreen
     Navigator.pushReplacementNamed(context, '/signin');
 
-    // print('*** Sign up berhasil!');
-    // print('Nama: $name');
-    // print('Nama Pengguna: $username');
-    // print('Kata Sandi: $password');
+    print('*** Sign up berhasil!');
+    print('Nama: $name');
+    print('Nama Pengguna: $username');
+    print('Kata Sandi: $password');
   }
 
   // TODO: 2. Membuat fungsi dispose

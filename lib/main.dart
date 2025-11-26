@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import '/screens/home_screen.dart';
+import '/screens/search_screen.dart';
+import '/screens/profile_screen.dart';
+import '/screens/favorite_screen.dart';
+import '/screens/signin_screen.dart';
+import '/screens/signup_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -11,10 +18,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Wisata Candi',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-      ),
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
       home: const MainScreen(),
+      routes: {
+        '/signin': (context) => const SignInScreen(),
+        '/signinscreen': (context) => const SignInScreen(),
+        '/signup': (context) => const SignUpScreen(),
+      },
     );
   }
 }
@@ -29,22 +39,34 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _children = const [
-    HomeScreen(),
-    SearchScreen(),
-    FavoriteScreen(),
-    ProfileScreen(),
-  ];
+  /// Fungsi untuk merender screen berdasarkan index yang dipilih dari bottomnav
+  Widget _renderScreen() {
+    switch (_currentIndex) {
+      case 0:
+        // Home Screen
+        return const HomeScreen();
+      case 1:
+        // Search Screen
+        return const SearchScreen();
+      case 2:
+        // Profile Screen
+        return const FavoriteScreen();
+      // Favorite Screen
+      case 3:
+        return const ProfileScreen();
+      default:
+        // Default ke Home Screen
+        return const HomeScreen();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _children[_currentIndex],
+      body: _renderScreen(),
 
       bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Colors.deepPurple[50],
-        ),
+        data: Theme.of(context).copyWith(canvasColor: Colors.deepPurple[50]),
         child: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: (index) {
@@ -57,87 +79,14 @@ class _MainScreenState extends State<MainScreen> {
           unselectedItemColor: Colors.deepPurple[200],
           showUnselectedLabels: true,
           items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: "Search",
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
             BottomNavigationBarItem(
               icon: Icon(Icons.favorite),
-              label: "Favorite",
+              label: "Favorit",
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Profile",
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          "Home Screen",
-          style: TextStyle(fontSize: 24),
-        ),
-      ),
-    );
-  }
-}
-
-class SearchScreen extends StatelessWidget {
-  const SearchScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          "Search Screen",
-          style: TextStyle(fontSize: 24),
-        ),
-      ),
-    );
-  }
-}
-
-class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          "Favorite Screen",
-          style: TextStyle(fontSize: 24),
-        ),
-      ),
-    );
-  }
-}
-
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          "Profile Screen",
-          style: TextStyle(fontSize: 24),
         ),
       ),
     );
