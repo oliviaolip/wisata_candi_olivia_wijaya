@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/widgets/profile_info_item.dart';
+import 'package:wisata_candi/widgets/profile_info_item.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -9,18 +9,30 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool isSignedIn = true;
-  String fullName = "Yanto";
-  String userName = "yanto_sigma";
-  int favoriteCandiCount = 6;
+  //   TODO 1 : Deklarasi variabel yang dibutuhkan
+  bool isSignedIn = false;
+  String fullName = '';
+  String userName = '';
+  int favoriteCandiCount = 0;
+  late Color iconColor;
 
-  void toggleSignIn() {
+  // TODO 5. Implementasi fungsi signIn
+  void signIn() {
+    // setState(() {
+    //   isSignedIn = true;
+    //   userName = 'Faiz';
+    //   fullName = 'Faiz Ganteng';
+    //   favoriteCandiCount = 3;
+    // });
+    Navigator.pushNamed(context, '/signin');
+  }
+
+  // TODO 6. Implementasi fungsi signOut
+  void signOut() {
     setState(() {
       isSignedIn = !isSignedIn;
     });
   }
-  void signIn() => toggleSignIn();
-  void signOut() => toggleSignIn();
 
   @override
   Widget build(BuildContext context) {
@@ -32,90 +44,86 @@ class _ProfileScreenState extends State<ProfileScreen> {
             width: double.infinity,
             color: Colors.deepPurple,
           ),
-
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
-                // Header
-                Padding(
-                  padding: const EdgeInsets.only(top: 150),
-                  child: Align(
-                    alignment: Alignment.center,
+                //   TODO 2 : Buat bagian ProfileHeader yang berisi gambar profile
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 200 - 50),
                     child: Stack(
                       alignment: Alignment.bottomRight,
                       children: [
-                        const CircleAvatar(
-                          radius: 60,
-                          backgroundImage: AssetImage('images/placeholder_image.png'),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.deepPurple,
+                              width: 2,
+                            ),
+                            shape: BoxShape.circle,
+                          ),
+                          child: CircleAvatar(
+                            radius: 50,
+                            backgroundImage: AssetImage(
+                              'assets/placeholder_image.png',
+                            ),
+                          ),
                         ),
                         if (isSignedIn)
                           IconButton(
                             onPressed: () {},
-                            icon: const Icon(Icons.camera_alt),
-                            color: Colors.white,
+                            icon: Icon(
+                              Icons.camera_alt,
+                              color: Colors.deepPurple[50],
+                            ),
                           ),
                       ],
                     ),
                   ),
                 ),
-
-                const SizedBox(height: 24),
-                const Divider(color: Colors.grey),
-                const SizedBox(height: 4),
-
+                //   TODO 3 : Buat bagian ProfileInfor yang berisi info profile
+                SizedBox(height: 20),
+                Divider(color: Colors.deepPurple[100]),
+                SizedBox(height: 4),
                 ProfileInfoItem(
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold
-                  ),
                   icon: Icons.lock,
+                  iconColor: Colors.amber,
                   label: 'Pengguna',
                   value: fullName,
-                  showEditIcon: false,
-                  onEditPressed: null,
-                  iconColor: Colors.amber,
+                  showEditIcon: isSignedIn,
+                  onEditPressed: () {},
                 ),
-                const SizedBox(height: 4),
-                const Divider(color: Colors.grey),
-                const SizedBox(height: 4),
-                
+                SizedBox(height: 4),
+                Divider(color: Colors.deepPurple[100]),
+                SizedBox(height: 4),
                 ProfileInfoItem(
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold
-                  ),
                   icon: Icons.person,
                   label: 'Nama',
                   value: userName,
                   showEditIcon: isSignedIn,
-                  onEditPressed: isSignedIn ? () {} : null,
-                  iconColor: Colors.deepPurple,
+                  onEditPressed: () {
+                    debugPrint('Icon edit ditekan ...');
+                  },
+                  iconColor: Colors.blue,
                 ),
-                const SizedBox(height: 4),
-                const Divider(color: Colors.grey),
-                const SizedBox(height: 4),
-
+                SizedBox(height: 4),
+                Divider(color: Colors.deepPurple[100]),
+                SizedBox(height: 4),
                 ProfileInfoItem(
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold
-                  ),
                   icon: Icons.favorite,
                   label: 'Favorit',
-                  value: favoriteCandiCount == 0
-                      ? '-'
-                      : '$favoriteCandiCount favorites',
-                  showEditIcon: false,
-                  onEditPressed: null,
-                  iconColor: Colors.redAccent,
+                  value: favoriteCandiCount > 0 ? '$favoriteCandiCount' : '',
+                  iconColor: Colors.red,
                 ),
-
-                const SizedBox(height: 4),
-                const Divider(color: Colors.grey),
-                const SizedBox(height: 20),
-
-                TextButton(
-                  onPressed: isSignedIn ? signOut : signIn,
-                  child: Text(isSignedIn ? 'Sign Out' : 'Sign In'),
-                ),
+                //   TODO 4 : Buat bagian ProfileActions yang berisi TextButton sign in/out
+                SizedBox(height: 4),
+                Divider(color: Colors.deepPurple[100]),
+                SizedBox(height: 4),
+                isSignedIn
+                    ? TextButton(onPressed: signOut, child: Text('Sign Out'))
+                    : TextButton(onPressed: signIn, child: Text('Sign In')),
               ],
             ),
           ),

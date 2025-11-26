@@ -24,9 +24,13 @@ class DetailInfo extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(candi.name,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold)),
+              Text(
+                candi.name,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               IconButton(
                 icon: Icon(
                   isFavorite ? Icons.favorite : Icons.favorite_border,
@@ -37,23 +41,29 @@ class DetailInfo extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          Row(children: [
-            const Icon(Icons.location_on, size: 18, color: Colors.amber),
-            const SizedBox(width: 6),
-            Text(candi.location),
-          ]),
+          Row(
+            children: [
+              const Icon(Icons.location_on, size: 18, color: Colors.amber),
+              const SizedBox(width: 6),
+              Text(candi.location),
+            ],
+          ),
           const SizedBox(height: 4),
-          Row(children: [
-            const Icon(Icons.calendar_month, size: 18, color: Colors.blue,),
-            const SizedBox(width: 6),
-            Text('Dibangun: ${candi.built}'),
-          ]),
+          Row(
+            children: [
+              const Icon(Icons.calendar_month, size: 18, color: Colors.blue),
+              const SizedBox(width: 6),
+              Text('Dibangun: ${candi.built}'),
+            ],
+          ),
           const SizedBox(height: 4),
-          Row(children: [
-            const Icon(Icons.house, size: 18, color: Colors.pink,),
-            const SizedBox(width: 6),
-            Text('Tipe: ${candi.type}'),
-          ]),
+          Row(
+            children: [
+              const Icon(Icons.house, size: 18, color: Colors.pink),
+              const SizedBox(width: 6),
+              Text('Tipe: ${candi.type}'),
+            ],
+          ),
           const SizedBox(height: 16),
           Divider(color: Colors.deepPurple.shade100),
           const SizedBox(height: 8),
