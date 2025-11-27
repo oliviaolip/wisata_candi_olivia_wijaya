@@ -22,10 +22,7 @@ class DetailHeader extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
-              ),
+              child: Image.network(imageUrl, fit: BoxFit.cover),
             ),
           ),
         ),
